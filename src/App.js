@@ -1,28 +1,44 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {connect} from 'react-redux';
+import * as actions from './actions';
+import Box from './components/commentbox';
+import List from './components/commentlist';
+import Login from './components/login';
+import {Link, Route} from 'react-router-dom';
+
+
 
 class App extends Component {
+
+
+
   render() {
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="container">
+        <div className='row header'>
+          <ul className='row'>
+            <li><Link to='/'>Home</Link></li>
+            <li><Link to ='/post'>Post a comment</Link></li>
+            <li><Link to ='/login'>Login</Link></li>
+
+          </ul>
+        </div>
+          <div className="row" >
+            <div className='col-md-auto'>
+            <Route path='/login' component={Login}></Route>
+            <Route path='/post' component={Box}></Route>
+            <Route path='/' exact component={List}></Route>
+            </div>
+
+          </div>
       </div>
     );
   }
 }
+
+
+
 
 export default App;
